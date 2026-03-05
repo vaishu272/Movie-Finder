@@ -161,7 +161,7 @@ const MovieSearch = () => {
               <div
                 key={movie.imdbID}
                 className="group relative rounded-xl overflow-hidden shadow-lg 
-                transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
+                transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl active:scale-95"
               >
                 {/* Poster */}
                 <img
@@ -172,9 +172,10 @@ const MovieSearch = () => {
 
                 {/* Overlay */}
                 <div
-                  className="absolute inset-0 bg-black/70 opacity-0 
-                  group-hover:opacity-100 transition flex flex-col 
-                  justify-end p-4 text-white"
+                  className="absolute inset-0 bg-black/70 
+                    opacity-100 md:opacity-0 
+                    md:group-hover:opacity-100 
+                    transition flex flex-col justify-end p-4 text-white"
                 >
                   <h3 className="text-sm font-semibold line-clamp-2">
                     {movie.Title}
