@@ -14,6 +14,7 @@ const MovieSearch = () => {
   const [page, setPage] = useState(1);
   const [pages, setPages] = useState({});
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [activeCard, setActiveCard] = useState(null);
 
   /* ---------------- Debounce Search ---------------- */
 
@@ -151,7 +152,7 @@ const MovieSearch = () => {
           </p>
         }
       >
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
           {uniqueMovies.map((movie) => {
             const isAdded = watchlist.some(
               (item) => item.imdbID === movie.imdbID,
@@ -160,22 +161,30 @@ const MovieSearch = () => {
             return (
               <div
                 key={movie.imdbID}
+                onClick={() =>
+                  setActiveCard(
+                    activeCard === movie.imdbID ? null : movie.imdbID,
+                  )
+                }
                 className="group relative rounded-xl overflow-hidden shadow-lg 
-                transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl active:scale-95"
+                  transform transition duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
               >
                 {/* Poster */}
                 <img
                   src={movie.Poster !== "N/A" ? movie.Poster : "/no-image.png"}
                   alt={movie.Title}
-                  className="w-full h-72 object-cover"
+                  className="w-full h-96 sm:h-72 object-cover"
                 />
 
                 {/* Overlay */}
                 <div
-                  className="absolute inset-0 bg-black/70 
-                    opacity-100 md:opacity-0 
-                    md:group-hover:opacity-100 
-                    transition flex flex-col justify-end p-4 text-white"
+                  className={`absolute inset-0 bg-black/70 
+                    transition flex flex-col justify-end p-4 text-white
+                    ${
+                      activeCard === movie.imdbID
+                        ? "opacity-100"
+                        : "opacity-0 md:group-hover:opacity-100"
+                    }`}
                 >
                   <h3 className="text-sm font-semibold line-clamp-2">
                     {movie.Title}
