@@ -9,7 +9,7 @@ MovieFinder is a modern React application that allows users to search for movies
 Deployed on **Vercel**
 
 ```
-https://your-vercel-link.vercel.app
+https://movie-finder-iota-wine.vercel.app/
 ```
 
 ---
